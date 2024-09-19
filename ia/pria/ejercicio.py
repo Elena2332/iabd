@@ -246,7 +246,24 @@ def ejercicio12():
 
 #####  EJERCICIO 13  #####
 def ejercicio13():
-    num = 1
+    num = 0
+    noBien = True
+    while noBien:
+        try:
+            print('Cuantos numeros vas a introducir?')
+            num = int(input())
+            noBien = False
+        except:
+            print('Un numero entero melon')
+    for i in range(num):
+        linea = ''
+        for j in range(i+1):   #linea del triangulo
+            linea = linea+str(j+i+1)+' '
+        for j in range(num-i) :  #espacios en blanco
+            linea = linea+' '
+        for j in range(num):   #linea cuadrado
+            linea = linea+' '+str(j+1)
+        print(linea)
 
 
 
