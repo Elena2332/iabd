@@ -1,3 +1,5 @@
+import math
+
 @staticmethod
 def listaAcadena(cadena):
     str = ''
@@ -47,6 +49,46 @@ def ejercicio2():
     print(cadenaFinal)
 
 
+
+#####  EJERCICIO 3  #####
+def ejercicio3():
+    print('Escribe lo que quieras')
+    str = input()
+    consonantes = []
+    vocales = ['a','A','e','E','i','I','o','O','u','U']
+    for letra in str:
+        if letra not in vocales :
+            consonantes.append(letra)
+    if len(consonantes) == 0:
+        print('No hay consonantes')
+    else:
+        print(listaAcadena(consonantes))
+    menu()
+
+
+
+#####  EJERCICIO 4  #####
+def ejercicio4():
+    print('Introduce una palabra para conprobar si es palindromo')
+    palabra = input()
+    str.lower(palabra)
+    cantLetras = len(palabra)
+    for i in range(math.floor(cantLetras/2)):
+        print(i,'  ',palabra[i] ,'  ', palabra[cantLetras-i-1])
+        if palabra[i] != palabra[cantLetras-i-1] :
+            print('No es palindromo')
+            break
+    menu()
+    # PREGUNTAR sobre la lista del enunciado
+
+
+
+#####  EJERCICIO 5  #####
+def ejercicio5():
+    print()
+
+
+
 #### MENU ####
 def menu():
     try:
@@ -70,12 +112,12 @@ def menu():
             ejercicio1()
         elif num == 2:
             ejercicio2()
-        # elif num == 3:
-        #     ejercicio3()
-        # elif num == 4:
-        #     ejercicio4()
-        # elif num == 5:
-        #     ejercicio5()
+        elif num == 3:
+            ejercicio3()
+        elif num == 4:
+            ejercicio4()
+        elif num == 5:
+            ejercicio5()
         # elif num == 6:
         #     ejercicio6()
         # elif num == 7:
