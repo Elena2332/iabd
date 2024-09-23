@@ -244,6 +244,7 @@ def ejercicio12():
         producto = producto*num 
     print('Producto:',producto)
 
+
 #####  EJERCICIO 13  #####
 def ejercicio13():
     num = 0
@@ -258,11 +259,15 @@ def ejercicio13():
     for i in range(num):
         linea = ''
         for j in range(i+1):   #linea del triangulo
+            if j+i+1 < 10 :
+                linea = linea+' '
             linea = linea+str(j+i+1)+' '
         for j in range(num-i) :  #espacios en blanco
-            linea = linea+' '
-        for j in range(num):   #linea cuadrado
-            linea = linea+' '+str(j+1)
+            linea = linea+'   '
+        for j in range(num):   #linea cuadradoif j+i >9 :
+            if j+i < 10 :
+                linea = linea+' '
+            linea = linea+' '+str(j+i+1)
         print(linea)
 
 
