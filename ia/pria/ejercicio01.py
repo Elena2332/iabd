@@ -251,7 +251,7 @@ def ejercicio13():
     noBien = True
     while noBien:
         try:
-            print('Cuantos numeros vas a introducir?')
+            print('Cuantos filas quieres?')
             num = int(input())
             noBien = False
         except:

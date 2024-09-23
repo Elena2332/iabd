@@ -85,8 +85,57 @@ def ejercicio4():
 
 #####  EJERCICIO 5  #####
 def ejercicio5():
-    print()
+    n = 0
+    noBien = True
+    while noBien:
+        try:
+            print('Introduce n')
+            n = int(input())
+            noBien = False
+        except:
+            print('Un numero entero melon')
+    matriz = []
+    i=0
+    while i < n*n:
+        fila = []        
+        for j in range(n):
+            fila.append(i)
+            i = i+1
+        # print(fila)
+        matriz.append(fila)
+    print(matriz)
+    
 
+
+#####  EJERCICIO 6  #####
+def ejercicio6():
+    n = 0
+    m = 0
+    noBien = True
+    while noBien:
+        try:
+            print('Introduce n (filas)')
+            n = int(input())
+            print('Introduce m (columnas)')
+            m = int(input())
+            noBien = False
+        except:
+            print('Numero enteros, no me sea cochino')
+    matriz = []
+    i=0
+    while i < n:
+        j=0
+        fila = []        
+        while j < m :
+            print('Introduce el numero [',i,'][',j,']')
+            num = int(input())
+            fila.append(num)
+            j=j+1
+        i=i+1        
+        matriz.append(fila)
+    # sumas
+    
+    print(matriz)
 
 
 #### MENU ####
@@ -118,8 +167,8 @@ def menu():
             ejercicio4()
         elif num == 5:
             ejercicio5()
-        # elif num == 6:
-        #     ejercicio6()
+        elif num == 6:
+            ejercicio6()
         # elif num == 7:
         #     ejercicio7()
         # elif num == 9:
