@@ -109,6 +109,7 @@ def ejercicio5():
 
 #####  EJERCICIO 6  #####
 def ejercicio6():
+    # Crear matriz
     n = 0
     m = 0
     noBien = True
@@ -134,9 +135,72 @@ def ejercicio6():
         i=i+1        
         matriz.append(fila)
     # sumas
-    
-    print(matriz)
+    suma = 0
+    sumaAux = 'a'
+    esIgual = True
+    j = 0
+    while j < m:   #recorer matriz por columnas
+        i = 0
+        suma = 0
+        while i< n :
+            suma = suma + matriz[i][j]
+            i = i+1
+        #print('Suma columna ',j+1,'=',suma)
+        #print('sumaAux = ',sumaAux)
+        if sumaAux == 'a':   #entra solo la primera vez
+            sumaAux = suma
+        elif suma != sumaAux:  # si la suma es diferente
+            esIgual = False
+            break
+        j = j+1
+    if not esIgual :
+        print('Las sumas de las columnas son distintas')
+    else:
+        print('La suma de todas las columnas es igual: ',suma)
+    menu()
 
+
+
+#####  EJERCICIO 7  #####
+def ejercicio7():
+    # crear matriz
+    n = 0
+    m = 0
+    noBien = True
+    while noBien:
+        try:
+            print('Introduce n (filas)')
+            n = int(input())
+            print('Introduce m (columnas)')
+            m = int(input())
+            noBien = False
+        except:
+            print('Numero enteros, no me sea cochino')
+    matriz = []
+    i=0
+    while i < n:
+        j=0
+        fila = []        
+        while j < m :
+            print('Introduce el numero [',i,'][',j,']')
+            num = int(input())
+            fila.append(num)
+            j=j+1
+        i=i+1        
+        matriz.append(fila)
+    ## crear la traspuesta
+    traspuesta = []
+    i=0
+    while i < m: 
+        j = 0
+        fila = []
+        while j < n:
+            fila.append(matriz[i][j])
+            j = j+1
+        print(fila)
+        i = i+1
+
+    
 
 #### MENU ####
 def menu():
@@ -169,8 +233,8 @@ def menu():
             ejercicio5()
         elif num == 6:
             ejercicio6()
-        # elif num == 7:
-        #     ejercicio7()
+        elif num == 7:
+            ejercicio7()
         # elif num == 9:
         #     ejercicio9() 
         # elif num == 10:
