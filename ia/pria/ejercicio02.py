@@ -351,6 +351,24 @@ def ejercicio11():
 
 
 
+#####  EJERCICIO 12  #####
+def ejercicio12():
+    noBien = True
+    while noBien:  # pedimos y validamos cuantas palabras
+        print('Cuantas palabras vana ser?')
+        num = math.floor(float(input()))    #truncamos para evitar decimales
+        if num < 0:
+            print('Numeros positivos por favor')
+        else:
+            noBien = False
+    for i in range(num):   #racogemos y almacenamos las palabras
+        print('Introduce palabra')
+        palabra = input()
+        vocales = ['a','A','e','E','i','I','o','O','u','U']
+        for letra in palabra:
+            if letra not in vocales :
+                cantVocales = cantVocales+1
+
 
 
 
@@ -395,8 +413,8 @@ def menu():
             ejercicio10()  
         elif num == 11:
             ejercicio11()  
-        # elif num == 12:
-        #     ejercicio12()  
+        elif num == 12:
+            ejercicio12()  
         # elif num == 13:
         #     ejercicio13()  
         else:
