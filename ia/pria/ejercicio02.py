@@ -16,13 +16,23 @@ def cadenaAlista(str):
 
 @staticmethod
 def verMatriz(matriz):
-    i = 0   # filas 
     for fila in matriz:
         strFila = ''
         for celda in fila:
             strFila = strFila+' '+str(celda)
         print(strFila+'\n')
 
+@staticmethod
+def verDiccionario(dicc):
+    print(dicc.keys())
+    for clave in dicc.keys():
+        strFila = str(clave)+':'
+        try:        # si no es lista salta excepcion
+            for valor in dicc[clave]:
+                strFila = strFila+'\n\t'+str(valor)
+        except:
+            strFila = strFila+'\n\t'+str(dicc[clave])
+        print(strFila+'\n')
    
 
 #####  EJERCICIO 1  #####
@@ -355,20 +365,115 @@ def ejercicio11():
 def ejercicio12():
     noBien = True
     while noBien:  # pedimos y validamos cuantas palabras
-        print('Cuantas palabras vana ser?')
+        print('Cuantas palabras van a ser?')
         num = math.floor(float(input()))    #truncamos para evitar decimales
         if num < 0:
             print('Numeros positivos por favor')
         else:
             noBien = False
-    for i in range(num):   #racogemos y almacenamos las palabras
+    vocales = ['a','A','e','E','i','I','o','O','u','U']
+    dicc = {}
+    for i in range(num):   #recogemos y almacenamos las palabras
         print('Introduce palabra')
         palabra = input()
         vocales = ['a','A','e','E','i','I','o','O','u','U']
+        cantVocales = 0
         for letra in palabra:
-            if letra not in vocales :
+            if letra in vocales :
                 cantVocales = cantVocales+1
+        dicc[palabra] = cantVocales
+    verDiccionario(dicc)
+    menu()
 
+
+#####  EJERCICIO 13  #####
+def ejercicio13():
+    noBien = True
+    num = 0
+    while noBien:  # pedimos y validamos el numero
+        try:
+            print('Introduce un numero')
+            num = int(input())   #truncamos para evitar decimales
+            noBien = False
+        except:
+            print('numero entero')
+    divisores = set()
+    for i in range(round(num/2)):  
+        i = i+1
+        if num%i == 0:
+            divisores.add(i)
+    divisores.add(num)
+    print('Divisores de ',num,':',divisores)
+    menu()
+
+
+#####  EJERCICIO 14  #####
+def ejercicio14():
+    conjunto={-2,-15,1,6,9,-50,100,200,10,20,5}
+    itemAux = 999999
+    for item in conjunto:
+        if item<itemAux:
+            itemAux = item
+    print(itemAux)
+
+
+#####  EJERCICIO 15  #####
+def ejercicio15():
+    conjunto={'0','*','a','A','z'}
+    itemAux = 0
+    for item in conjunto:
+        print(item,'=',ord(item))  
+        if ord(item)>itemAux:
+            itemAux = ord(item)
+    print(chr(itemAux))
+    menu()
+
+
+#####  EJERCICIO 16  #####
+def ejercicio16():
+    conjunto = set()
+    print('Introduce una frase')
+    frase = input()
+    noBien = False
+    palabras = frase.split(' ')
+    for palabra in palabras:
+        if palabra[0].isalpha() :
+            conjunto.add(palabra[0].lower())
+        else:
+            noBien = True
+            break
+    if noBien:
+        print('Error en los datos. Intentalo de nuevo')
+    else:
+        print(conjunto)
+    menu()
+
+
+#####  EJERCICIO 17  #####
+def ejercicio17():
+    noBien = True
+    while noBien:
+        try:
+            print('Cuantos numeros vas a introducir?')
+            cantNum = int(input())
+            for i in range(cantNum):
+                print('Introduce numero')
+                num = int(input())
+                if num%2 == 0:   # par
+                    t = num, 'es par'
+                else:
+                    t = num, 'es impar'
+                print(t)
+            noBien = False
+        except:
+            print('error en los datos')
+    menu()
+
+
+
+#####  EJERCICIO 18  #####
+def ejercicio18():
+    print()
 
 
 
@@ -389,6 +494,11 @@ def menu():
             11 = Ejercicio11
             12 = Ejercicio12
             13 = Ejercicio13
+            14 = Ejercicio14
+            15 = Ejercicio15
+            16 = Ejercicio16
+            17 = Ejercicio17
+            18 = Ejercicio18
             para TERMINAR cualquier otra cosa''')
         num = int(input())
         if num == 1 : 
@@ -415,8 +525,18 @@ def menu():
             ejercicio11()  
         elif num == 12:
             ejercicio12()  
-        # elif num == 13:
-        #     ejercicio13()  
+        elif num == 13:
+            ejercicio13()  
+        elif num == 14:
+            ejercicio14()  
+        elif num == 15:
+            ejercicio15() 
+        elif num == 16:
+            ejercicio16()  
+        elif num == 17:
+            ejercicio17()  
+        elif num == 18:
+            ejercicio18()  
         else:
             print('Adios')
     except ValueError:
