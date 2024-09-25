@@ -473,8 +473,95 @@ def ejercicio17():
 
 #####  EJERCICIO 18  #####
 def ejercicio18():
-    print()
+    print('Introduce una frase')
+    frase = input()
+    palabras = frase.split(' ')   #lista de palabras
+    contenidoTupla = []
+    i = 0
+    for palabra in palabras:
+        contenidoTupla.append([palabra,len(palabra),palabra[0],i])
+        i = i+1
+    tupla = tuple(contenidoTupla)
+    print(tupla)
+    menu()
 
+
+#####  EJERCICIO 19  #####
+def ejercicio19():
+    seguir = True
+    contenidoTupla = []
+    while seguir:
+        print('introduce palabra')
+        palabra = input()
+        if palabra == '':    #Terminamos
+            seguir = False
+        else:
+            contenidoTupla.append(palabra)
+    tupla = tuple(contenidoTupla)
+    palI,*pals,palF = tupla
+    print('primera palabra: ',palI,'\nultima palabra: ',palF)
+    menu()
+
+
+#####  EJERCICIO 20  #####
+def ejercicio20():
+    lista = ['salmon','sos','asd','zombi','palabra']
+    longitudes = []
+    for pal in lista:
+        longitudes.append(len(pal))
+    tupla = dict(zip(lista,longitudes))
+    print(tupla)
+    menu()
+
+
+#####  EJERCICIO 21  #####
+def ejercicio21():
+    num1 = 1
+    num2 = 1
+    noBien = True
+    while noBien:
+        try:
+            print('Introduce un entero')
+            num1 = int(input())
+            print('Introduce otro entero')
+            num2 = int(input())
+            if num1 >= num2:
+                noBien = False
+            else:
+                print('error en los datos')
+        except:
+            print('error en los datos')
+    tupla = num1, num2, num1/num2, num1%num2
+    print(tupla) 
+    menu()
+
+
+#####  EJERCICIO 22  #####
+def ejercicio22():
+    num = 1
+    lista = []
+    seguir = True
+    while seguir:
+        noBien = True
+        while noBien:
+            try:
+                print('Introduce un entero')
+                num = int(input())
+                if num >=1 or num<=360 :
+                    noBien = False
+                else:
+                    print('error en los datos')
+            except:
+                print('error en los datos')
+        numRad = round(num*math.pi/180, 2)
+        lista.append(tuple([num,numRad]))
+        #para terminar
+        print('si quieres continuar introduce s')
+        resp = input()
+        if resp != 's':
+            seguir = False
+    print(lista)
+    menu()
 
 
 #### MENU ####
@@ -499,6 +586,10 @@ def menu():
             16 = Ejercicio16
             17 = Ejercicio17
             18 = Ejercicio18
+            19 = Ejercicio19
+            20 = Ejercicio20
+            21 = Ejercicio21
+            22 = Ejercicio22
             para TERMINAR cualquier otra cosa''')
         num = int(input())
         if num == 1 : 
@@ -537,6 +628,14 @@ def menu():
             ejercicio17()  
         elif num == 18:
             ejercicio18()  
+        elif num == 19:
+            ejercicio19()  
+        elif num == 20:
+            ejercicio20()  
+        elif num == 21:
+            ejercicio21()  
+        elif num == 22:
+            ejercicio22()  
         else:
             print('Adios')
     except ValueError:
