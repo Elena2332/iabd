@@ -376,7 +376,6 @@ def ejercicio12():
     for i in range(num):   #recogemos y almacenamos las palabras
         print('Introduce palabra')
         palabra = input()
-        vocales = ['a','A','e','E','i','I','o','O','u','U']
         cantVocales = 0
         for letra in palabra:
             if letra in vocales :
@@ -393,7 +392,7 @@ def ejercicio13():
     while noBien:  # pedimos y validamos el numero
         try:
             print('Introduce un numero')
-            num = int(input())   #truncamos para evitar decimales
+            num = int(input())  
             noBien = False
         except:
             print('numero entero')
