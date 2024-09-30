@@ -5,4 +5,7 @@ lista6: todo[5](archivos)
 lista7: 1->7   (obtencion datos)
 lista8: 1->6   (scrips y modulos)
 lista10:1->6   (numpy)
+
+si proyecto
+    entregar [2,5,10,11,12,proyecto]
 total: 47

@@ -1,0 +1,78 @@
+<p dir="ltr" style="text-align:left;"></p>
+<h4>Introduccion<br></h4>
+<p dir="ltr">Se conoce como integración de datos al proceso al que se someten los datos de distintos formatos y orígenes para poder combinarlos y hacerlos accesibles de una manera unificada y coherente.</p>
+<p dir="ltr">Entre el vasto abanico de estrategias y herramientas que permiten una correcta integración de datos, las dos predominantes son extraer, transformar y cargar ( por sus siglas en inglés) y extraer, cargar y transformar (ELT, también por sus siglas en inglés). Estos métodos representan distintas aproximaciones a la hora de integrar los datos, cada uno de ellos con sus respectivas virtudes y flaquezas.&nbsp;&nbsp;</p><br>
+<p dir="ltr"><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe0a517wU2n2xhJI8xCnlysBaJP7PIsyPwigovv38IB5psL7E782SMZrgxBYd4VUt4kheQVQFSTQHewMN6BhsTxHY5_GdlHY6tOBL7Kge99nHhjDAFjyA8O1eHEU9NVpQjbPBIbP9cxJTipd99NjtYkuSak?key=u6kHiJcvLwfG48cL_-sHjg" width="602" height="345" alt="AD_4nXe0a517wU2n2xhJI8xCnlysBaJP7PIsyPwigovv38IB5psL7E782SMZrgxBYd4VUt4kheQVQFSTQHewMN6BhsTxHY5_GdlHY6tOBL7Kge99nHhjDAFjyA8O1eHEU9NVpQjbPBIbP9cxJTipd99NjtYkuSak?key=u6kHiJcvLwfG48cL_-sHjg"></p><br>
+<h4>ETL: Virtudes y Casos de uso.</h4>
+<p dir="ltr">ETL es un proceso especialmente adecuado para los escenarios con las siguientes características:</p>
+<ul>
+    <li dir="ltr">
+        <p dir="ltr">Fuentes de datos pequeñas y con complejas transformaciones de los datos.</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">Es necesario descargar el procesamiento de la transformación del sistema de destino.</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">La seguridad de los datos es prioritaria, requiriendo una transformación para enmascarar y cifrar la información sensible antes de darle entrada en el almacén de datos.</p>
+    </li>
+</ul>
+<p dir="ltr"> </p>
+<p dir="ltr"> ETL se vuelve en muchos casos la opción por defecto para muchos casos gracias a su sencillez a la hora de integrarse con Python, el cual cuenta con las siguientes ventajas:</p>
+<p dir="ltr"> </p>
+<ul>
+    <li dir="ltr">
+        <p dir="ltr">Flexibilidad: Gracias a su gran repertorio de librerías Python puede adaptarse a las necesidades específicas de cada proceso ETL.</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">Escalabilidad: Con herramientas como PySpark, Python es capaz de gestionar pequeños y grandes volúmenes de datos de manera efectiva.&nbsp;</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">Comunidad: Al ser un lenguaje con un uso tan extendido en el campo del big data siempre hay abundantes documentaciones y tutoriales para sus problemas más comunes.</p>
+    </li>
+</ul><br>
+<h4> ELT: Virtudes y Casos de uso.</h4>
+<p dir="ltr"> ELT por su parte ha visto su popularidad incrementada junto al avance de las opciones de almacenamiento en la nube como pueden ser Snowflake, BigQuery y Redshift. Estas opciones cuentan con una gran capacidad de procesamiento, permitiéndoles transformar grandes cantidades de datos dentro de los almacenes de datos, ofreciendo las siguientes ventajas:</p>
+<ul>
+    <li dir="ltr">
+        <p dir="ltr">Flexibilidad: Como los datos son almacenados de manera directa estos pueden ser transformados más tarde, permitiendo una mayor adaptabilidad a cambios imprevistos.</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">Eficiencia: Aprovechando la potencia de los servicios en la nube las transformaciones de los datos son más rápidas y más escalables.</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">Óptimo para grandes volúmenes: Gracias a la gran capacidad de procesamiento en paralelo de los sistemas en la nube ELT suele ser más indicada para grandes volúmenes de datos.</p>
+    </li>
+</ul><br>
+<h4>ETL vs ELT</h4>
+<h5>Velocidad y Eficiencia</h5>
+<p dir="ltr">Por norma general ELT es más rápido en la ingesta de datos que ETL, aunque transformaciones demasiado complejas pueden hacer que ETL tenga un tiempo menor del proceso en conjunto.</p>
+<h5>Transformación y Conformidad de los Datos</h5>
+<p dir="ltr"> </p>
+<p dir="ltr"> En ETL la transformación de los datos ocurre en un sistema intermediario que puede brindar un control más granular sobre el proceso. Esto puede ser especialmente importante para empresas que manejan datos sensibles ya que les permite cumplir con los requerimientos legales del sistema. ELT por su parte delega todos esos factores al sistema destinatario, pudiendo filtrar datos sin ningún tipo de filtro o transformación. <br></p>
+<p dir="ltr"> </p>
+<h5>Conclusión</h5>
+<p dir="ltr"> </p>
+<p dir="ltr">Ambos procesos cuentan con sus fortalezas y debilidades, y no es poco habitual que las organizaciones necesiten lo mejor de ambos mundos (la velocidad de ELT y la flexibilidad y la seguridad de ETL). Debido a ello en los recientes años ha surgido un nuevo enfoque, ETLT (Extract, Transform, Load, Transform)</p>
+<p dir="ltr">Este modelo híbrido realiza los siguientes pasos:</p>
+<ol>
+    <li dir="ltr">
+        <p dir="ltr">Extracción: Los datos en bruto se recogen de las distintas fuentes.</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">Transformaciones: Estas primeras transformaciones que se realizan sobre los datos son las más ligeras y rápidas de procesar, eliminando datos innecesarios o redundantes y enmascarar datos sensibles. Se realizan de manera independiente sobre cada fuente.</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">Carga: En esta fase se realiza el volcado de datos a los almacenes de datos.</p>
+    </li>
+    <li dir="ltr">
+        <p dir="ltr">Transformaciones: En este segundo lote de transformaciones es donde se realizan las operaciones más pesadas como la integración de datos de distintas fuentes.</p>
+    </li>
+</ol><br>
+<h4>Ventajas de ETLT</h4>
+<p dir="ltr">ETLT cuenta tanto con las ventajas de ETL como con las de ETL, cuenta con una alta velocidad de ingesta de datos a la vez que proporciona la seguridad necesaria para trabajar con los datos más sensibles. Eso sí, a costa de una implementación más costosa.</p>
+<p dir="ltr">Los casos de implementación más comunes de procesos ETLT son aquellos en los que los datos deben ser enmascarados, anonimizados o filtrados por motivos regulatorios como la GDPR de la Unión Europea.</p>
+<p dir="ltr">ETLT también brinda una mayor escalabilidad sin renunciar a seguridad, como los datos son almacenados sin transformaciones significativas estos se pueden reutilizar en futuros casos sin necesidad de realizar la transformación inversa.</p>
+<div><br></div>
+<div>[[Datos]]</div>
+<div>[[¿Qué es BIG DATA?]]</div><br>
+<p></p>
