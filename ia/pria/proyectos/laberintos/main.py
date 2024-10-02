@@ -1,9 +1,11 @@
 #from Laberinto import *
 from Laberinto import Laberinto
 
-labe = Laberinto(5,5)
+labe = Laberinto(5,8)
   
 #print(Laberinto.__doc__)
 
-labe.llenarLaberinto()
-labe.mostrarLaberinto()
+if labe.llenarLaberinto():
+    labe.mostrarLaberinto()
+else:
+    print('El laberinto no se ha podido crear prueba de nuevo')
