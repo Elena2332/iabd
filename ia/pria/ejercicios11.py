@@ -2,8 +2,14 @@ import numpy as np
 import pandas as pd
 
 def ejercicio1():
-    arr = np.zeros_like()
-    print(arr)
+    datos = {}
+    datos['x'] = np.random.randint(50, size = 15)
+    datos['y'] = np.random.randint(50, size = 15)
+    df = pd.DataFrame(data = datos)
+    print(df)
+    menu()
+
+
 def ejercicio2():
     print('Sin hacer aun')
 def ejercicio3():
