@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 
-'''
+
+
 print('\n~~~~~~~~~~ EJERCICIO 1 ~~~~~~~~~~~~\n')
 datos = {}
 datos['x'] = np.random.randint(-20,50, size = 15)
@@ -131,16 +132,17 @@ fotocasa5_df = fotocasa2_df.astype({'Tipo':'category',
                                     'Parking':'category'})
 print(fotocasa5_df.dtypes)
 
-'''
+
 
 print('\n~~~~~~~~~~ EJERCICIO 16 ~~~~~~~~~~~~\n')
 df_csv = pd.read_csv('./recursos/ciudades_ejemplo.csv', index_col = 0)
 df_excel = df_csv.to_excel('./recursos/ciudades_ejemplo_excel.xlsx')
-
+print('Mira carpeta "recursos"')
 
 
 print('\n~~~~~~~~~~ EJERCICIO 17 ~~~~~~~~~~~~\n')
-df_paro = pd.read_csv("https://raw.githubusercontent.com/ainaramu-icjardin/big_data/main/parocomunidades.csv", index_col = 0)
-print(df_paro)
-
+df_paro = pd.read_csv('./recursos/parocomunidades.csv', encoding='latin1')
+print('Filas del Periodo 2019:\n',df_paro[df_paro['Periodo'] == 2019])
+print('\nFilas con un total > 15:\n',df_paro[(df_paro['Total']>15)])
+print('\nFilas del Periodo 2019 y total > 15:\n',df_paro[(df_paro['Total']>15) & (df_paro['Periodo'] == 2019)])
 
