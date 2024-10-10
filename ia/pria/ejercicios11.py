@@ -83,7 +83,7 @@ print('\n~~~~~~~~~~ EJERCICIO 8 ~~~~~~~~~~~~\n')
 for i,fila in words.iterrows():
     if fila['vowels'] == fila['consonants']:
         print('{} tiene {} vocales, {} consonantes'.format(fila['word'],fila['vowels'],fila['consonants']))
-'''
+
 
 
 print('\n~~~~~~~~~~ EJERCICIO 9 ~~~~~~~~~~~~\n')
@@ -101,8 +101,46 @@ print('Primeros 5: \n',fotocasa_df.head())
 
 print('\n~~~~~~~~~~ EJERCICIO 11 ~~~~~~~~~~~~\n')
 print('Ultimos 5: \n',fotocasa_df.tail())
-print(fotocasa_df.columns)
-#print('Tipos de inmueble de 3 ultimos: \n Inmobiliaria: {} \nTipo: {}'.format(fotocasa_df.tail(3)['Inmobiliaria'],fotocasa_df.tail(3)['Tipo']))
+#print(fotocasa_df.columns)
+print('Tipos de inmueble de 3 ultimos: \nInmobiliaria: \n{} \n\nTipo: \n{}'.format(fotocasa_df.tail(3)['Inmobiliaria'],fotocasa_df.tail(3)['Tipo de inmueble']))
 
+
+
+print('\n~~~~~~~~~~ EJERCICIO 12 ~~~~~~~~~~~~\n')
+fotocasa1_df = fotocasa_df.drop(labels = ['Domótica','Pista de Tenis','Alarma','Mascotas','Energía Solar','Gimnasio'],axis=1)
+print(fotocasa1_df.columns)   # axis = 0(filas) , 1(columnas)
+
+
+
+print('\n~~~~~~~~~~ EJERCICIO 13 ~~~~~~~~~~~~\n')
+fotocasa2_df = fotocasa_df.rename(columns = {'Tipo de inmueble':'Tipo'},)
+print(fotocasa2_df.columns)
+
+
+
+print('\n~~~~~~~~~~ EJERCICIO 14 ~~~~~~~~~~~~\n')
+fotocasa4_df = fotocasa_df[(fotocasa_df['Precio'].notnull()) & (fotocasa_df['Precio'] != 'A consultar')]
+print(fotocasa4_df)
+
+
+
+print('\n~~~~~~~~~~ EJERCICIO 15 ~~~~~~~~~~~~\n')
+fotocasa5_df = fotocasa2_df.astype({'Tipo':'category', 
+                                    'Orientación':'category',
+                                    'Estado':'category',
+                                    'Parking':'category'})
+print(fotocasa5_df.dtypes)
+
+'''
+
+print('\n~~~~~~~~~~ EJERCICIO 16 ~~~~~~~~~~~~\n')
+df_csv = pd.read_csv('./recursos/ciudades_ejemplo.csv', index_col = 0)
+df_excel = df_csv.to_excel('./recursos/ciudades_ejemplo_excel.xlsx')
+
+
+
+print('\n~~~~~~~~~~ EJERCICIO 17 ~~~~~~~~~~~~\n')
+df_paro = pd.read_csv("https://raw.githubusercontent.com/ainaramu-icjardin/big_data/main/parocomunidades.csv", index_col = 0)
+print(df_paro)
 
 
