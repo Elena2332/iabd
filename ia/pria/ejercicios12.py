@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import networkx as nx
 
 COLORES = np.array(['blue','green','red','cyan','magenta','yellow','black','white'])
 
@@ -53,26 +54,83 @@ def ejercicio3():
 def ejercicio4():
     fig = plt.figure(figsize=(10,5))
     arrX = np.linspace(-5*np.pi, 5*np.pi, 100)
-    x1 = fig.add_subplot(311)
-    x1.plot(arrX, f1(arrX), c='#f06741',label='sin(x)/x')
+
+    x1 = fig.add_subplot(331)
+    x1.plot(arrX, f1(arrX), c='#f06741')
+    x1.set_title('sin(x)/x')
+
     #funcion 2sin(x)/x
-    x2 = fig.add_subplot(312)
-    x2.plot(arrX, f2(arrX) , c='#a4f041', label='2sin(x)/x')
+    x2 = fig.add_subplot(332)
+    x2.plot(arrX, f2(arrX) , c='#a4f041')
+    x2.set_title('2sin(x)/x')
+
     #funcion -sin(x)/x
-    x3 = fig.add_subplot(313)
+    x3 = fig.add_subplot(333)
     x3.plot(arrX, f3(arrX) , c='#8d41f0')
-    plt.title('-sin(x)/x')
+    x3.set_title('-sin(x)/x')
     plt.show()
 
 
 def ejercicio5():
-    print('Sin hacer aun')
+    options = ["Suspenso", "Aprobado", "Notable", "Excelente"]
+    count = [20, 10, 45, 25]
+    colors = ["#ff2667", "#ff7226", "#26a8ff", "#67ff26"]
+    plt.pie(count,colors=colors,labels=options)
+    plt.show()
+    menu()
+
+
+
 def ejercicio6():
-    print('Sin hacer aun')
+    G = nx.Graph()
+    G.add_nodes_from("abcde")
+    G.add_weighted_edges_from([("a", "b", 1), ("a", "c", 2), 
+                               ("a", "d", 2), ("a", "e", 5), 
+                               ("b", "e", 4), ("c", "d", 3), 
+                               ("d", "e", 1)])
+    #print('Nodos: ',G.nodes,'Aristas: ',G.edges)
+    fig, ax = plt.subplots()
+    nx.draw(G, ax=ax, with_labels=True, 
+            node_color='#ad80fa', font_weight='bold', font_color='#ffffff',
+            edge_color='#b1ddf5')
+    plt.show()
+    menu()
+
 def ejercicio7():
-    print('Sin hacer aun')
+    G = nx.Graph()
+    G.add_nodes_from("abcde")
+    G.add_weighted_edges_from([("a", "b", 1), ("a", "c", 2), 
+                               ("a", "d", 2), ("a", "e", 5), 
+                               ("b", "e", 4), ("c", "d", 3), 
+                               ("d", "e", 1)])
+    #print('Nodos: ',G.nodes,'Aristas: ',G.edges)
+    fig, ax = plt.subplots()
+    plt.figure=fig.set_size_inches(8,6)
+    nx.draw(G, ax=ax, with_labels=True, 
+            node_color='#ad80fa', node_size=350,
+            font_weight='bold', font_color='#ffffff',
+            edge_color='#b1ddf5')
+    plt.show()
+
+
+
 def ejercicio8():
-    print('Sin hacer aun')
+    G = nx.Graph()
+    G.add_nodes_from("abcde")
+    G.add_weighted_edges_from([("a", "b", 1), ("a", "c", 2), 
+                               ("a", "d", 2), ("a", "e", 5), 
+                               ("b", "e", 4), ("c", "d", 3), 
+                               ("d", "e", 1)])
+    pesosArista = nx.get_edge_attributes(G,'weight')
+    fig, ax = plt.subplots()
+    plt.figure=fig.set_size_inches(8,6)
+    nx.draw(G, ax=ax, with_labels=True, 
+            node_color='#ad80fa', node_size=350,
+            font_weight='bold', font_color='#ffffff',
+            edge_color='#b1ddf5',width=pesosArista)
+    
+    plt.show()
+    
 def ejercicio9():
     print('Sin hacer aun')
 
