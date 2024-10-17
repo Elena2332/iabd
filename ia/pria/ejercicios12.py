@@ -69,7 +69,8 @@ def ejercicio4():
     x3.plot(arrX, f3(arrX) , c='#8d41f0')
     x3.set_title('-sin(x)/x')
     plt.show()
-
+    menu()
+    
 
 def ejercicio5():
     options = ["Suspenso", "Aprobado", "Notable", "Excelente"]
@@ -111,7 +112,7 @@ def ejercicio7():
             font_weight='bold', font_color='#ffffff',
             edge_color='#b1ddf5')
     plt.show()
-
+    menu()
 
 
 def ejercicio8():
