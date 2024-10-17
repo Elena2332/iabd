@@ -121,20 +121,36 @@ def ejercicio8():
                                ("a", "d", 2), ("a", "e", 5), 
                                ("b", "e", 4), ("c", "d", 3), 
                                ("d", "e", 1)])
-    pesosArista = nx.get_edge_attributes(G,'weight')
+    aristasData = G.edges.data()
+    pesosArista = []
+    for arista in aristasData:
+        pesosArista.append(arista[2]['weight'])
     fig, ax = plt.subplots()
     plt.figure=fig.set_size_inches(8,6)
     nx.draw(G, ax=ax, with_labels=True, 
             node_color='#ad80fa', node_size=350,
             font_weight='bold', font_color='#ffffff',
             edge_color='#b1ddf5',width=pesosArista)
-    
     plt.show()
+    menu()
+
+
     
 def ejercicio9():
-    print('Sin hacer aun')
-
-
+    plt.figure(figsize=(10,8))
+    plt.text(0.2, 0.8, 'LA', fontsize=50, rotation=25, 
+             ha='center', va='center',
+             bbox=dict(boxstyle='round,pad=0.3', fc='#242fff', ec='#242fff', alpha=0.7))
+    
+    plt.text(0.5, 0.55, 'AVENTURA', fontsize=50, rotation=-15, 
+             ha='center', va='center',
+             bbox=dict(boxstyle='round,pad=0.3', fc='#8a24ff', ec='#8a24ff', alpha=0.7))
+    
+    plt.text(0.8, 0.3, 'SIGUE', fontsize=50, rotation=10, 
+             ha='center', va='center',
+             bbox=dict(boxstyle='round,pad=0.3', fc='#24fff4', ec='#24fff4', alpha=0.7))
+    plt.show()
+    menu()
 
 
 
