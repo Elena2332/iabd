@@ -137,18 +137,54 @@ def ejercicio6():
 #####  EJERCICIO 7  #####
 def ejercicio7():
     d = dt.datetime.now()
+    d2 = d - dt.timedelta(days=5)
     print('Fecha actual: ',d.strftime('%d-%m-%y'))
-    print('Fecha 5 dias antes: ', )
+    print('Fecha 5 dias antes: ', d2.strftime('%d-%m-%y'))
     menu()
 
 
 #####  EJERCICIO 8  #####
+def divisors(n):
+    """
+    Calcula los divisores de un número entero positivo.
+    Args:
+        n: Número entero positive
+    Returns:
+        divisors: Lista de divisores de n
+    """
+    if n<0:
+        raise ValueError
+    divisors = []
+    for i in range(1, n + 1):
+        if n % i == 0: 
+            divisors.append(i)
+            return divisors
+    
+
 def ejercicio8():
+    try:
+        print(divisors(26))
+        divisors('a')
+        print(divisors(-3))
+    except ValueError:
+        print('ValueError: Valor negativo introducido')
+    except TypeError:
+        print('TypeError: Valor introducido no numerico')
     menu()
 
 
 #####  EJERCICIO 9  #####
 def ejercicio9():
+    msgError = 'Numero no válido'
+    try:
+        print('Introduce edad')
+        edad = int(input())
+        if edad < 0 or edad >150:
+            raise ValueError
+    except ValueError:
+        print(msgError,', debe estar entre 0 y 150 para ser valido')
+    except :
+        print(msgError,' no es un numero entero')
     menu()
 
 
@@ -166,7 +202,6 @@ def menu():
             7 = Ejercicio7
             8 = Ejercicio8
             9 = Ejercicio9
-            10 = Ejercicio10
             para TERMINAR cualquier otra cosa''')
         num = int(input())
         if num == 1 : 
@@ -187,8 +222,6 @@ def menu():
            ejercicio8()
         elif num == 9:
            ejercicio9() 
-        # elif num == 10:
-        #    ejercicio10()  
         else:
             print('Adios')
     except ValueError:
