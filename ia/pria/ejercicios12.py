@@ -11,8 +11,9 @@ def ejercicio1():
     tam = np.random.randint(1,50, size = 100) *10
     plt.figure(figsize=(10,10))
     plt.title('100 puntos aleatorios')
-    plt.scatter(x = arrX, y = arrY, c = color, cmap='inferno', 
+    plt.scatter(x = arrX, y = arrY, c = color, cmap='hsv', 
                 s=tam, alpha = 0.5)
+    plt.colorbar()
     plt.show()
     menu()
 
