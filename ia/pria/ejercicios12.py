@@ -3,7 +3,6 @@ import seaborn as sns
 import numpy as np
 import networkx as nx
 
-COLORES = np.array(['blue','green','red','cyan','magenta','yellow','black','white'])
 
 def ejercicio1():
     arrX = np.random.randint(1,100, size = 100)
@@ -157,36 +156,39 @@ def ejercicio9():
 
 #### MENU ####
 def menu():
-    print('''\nSelecciona Ejercicio
-        1 = Ejercicio1
-        2 = Ejercicio2
-        3 = Ejercicio3
-        4 = Ejercicio4
-        5 = Ejercicio5
-        6 = Ejercicio6
-        7 = Ejercicio7
-        8 = Ejercicio8
-        9 = Ejercicio9
-        para TERMINAR cualquier otra cosa''')
-    num = int(input())
-    if num == 1 : 
-        ejercicio1()
-    elif num == 2:
-        ejercicio2()
-    elif num == 3:
-        ejercicio3()
-    elif num == 4:
-        ejercicio4()
-    elif num == 5:
-        ejercicio5()
-    elif num == 6:
-        ejercicio6()
-    elif num == 7:
-        ejercicio7()
-    elif num == 8:
-        ejercicio8() 
-    elif num == 9:
-        ejercicio9() 
-    else:
+    try:
+        print('''\nSelecciona Ejercicio
+            1 = Ejercicio1
+            2 = Ejercicio2
+            3 = Ejercicio3
+            4 = Ejercicio4
+            5 = Ejercicio5
+            6 = Ejercicio6
+            7 = Ejercicio7
+            8 = Ejercicio8
+            9 = Ejercicio9
+            para TERMINAR cualquier otra cosa''')
+        num = int(input())
+        if num == 1 : 
+            ejercicio1()
+        elif num == 2:
+            ejercicio2()
+        elif num == 3:
+            ejercicio3()
+        elif num == 4:
+            ejercicio4()
+        elif num == 5:
+            ejercicio5()
+        elif num == 6:
+            ejercicio6()
+        elif num == 7:
+            ejercicio7()
+        elif num == 8:
+            ejercicio8() 
+        elif num == 9:
+            ejercicio9() 
+        else:
+            print('Adios')
+    except:
         print('Adios')
 menu()
