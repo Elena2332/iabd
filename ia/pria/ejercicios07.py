@@ -74,10 +74,11 @@ def ejercicio7():
     soup = Bs(req.text)
     condicion = soup.find_all(name='p', attrs={'id':'product_condition'})[0].text
     name = soup.find_all(name='h1', attrs={'itemprop':'name'})[0].text
-    #medidas = soup.find_all(name='a', attrs={'class':'product-name'})
+    #medidas = soup.find_all(name='div', attrs={'id':'short_description_content'})[0]
+    medidas = soup.children(name='div', attrs={'id':'short_description_content'})
     #plazo = soup.find_all(name='a', attrs={'class':'product-name'})
     print('Nombre: ',name,'\nCondicion: ',condicion)
-    
+    #https://beautiful-soup-4.readthedocs.io/en/latest/#navigating-the-tree
     menu()
 
 
