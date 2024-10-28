@@ -1,0 +1,4 @@
+nombre: pepe
+apellido: aki
+edad: 34
+color_favorito: azul
