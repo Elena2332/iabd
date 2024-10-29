@@ -35,23 +35,54 @@ mayoría de ellas perdidas tras la paz de Utrecht de 1713.'''
 
 def ejercicio3():
     texto = '¡¡¡¡¡¡¡Oye!!!!!!!!'
-    repes = re.findall(r'\W+',texto)
-    for a in repes: texto=str.replace(texto,a,a[0])
-    print(texto)
+    #repes = re.findall(r'\W+',texto)
+    #for car in repes: texto=str.replace(texto,car,car[0])
+    #print(texto)
+    txt = re.sub(r'(\W)\1+', r'\1',texto)
+    print(txt)
     menu()
 
 
 def ejercicio4():
     texto = 'Me lo estoy pasando muy muy muy bien'
-    print('Sin hacer aun')
+    print(re.sub(r"(\b\w+\b\s)\1+", r"\1",texto)) 
+    menu()
 
 
 def ejercicio5():
-    print('Sin hacer aun')
+    texto = '''Se ha facturado un total de 1500 € al usuario test@dominio.es durante 
+el año 2019. Otros usuarios, como prueba@otro.com con 123.32€ o new@contact.com han gastado 
+solamente 500€.'''
+    print(re.findall(r'\d+\.?\d*\s?€|\w+@\w+\.\w+',texto))
+    menu()
+
+
 def ejercicio6():
-    print('Sin hacer aun')
+    texto = '968 12 23 31, 900 141 142, 945112233, 656-247733'
+    nums_encontrados = re.findall(r'\d{3}\s?\d{2}\s?\d{2}\s?\d{2}| \d{3} \d{3} \d{3}|\d{3}-\d{6}',texto)
+    nums=[]
+    for num in nums_encontrados:
+        num=num.replace(' ','')
+        num=num.replace('-','')
+        nums.append(num)
+    print(nums)
+    menu()
+
+
 def ejercicio7():
-    print('Sin hacer aun')
+    '''
+
+Validación de direcciones de correo electrónico. Escribe una expresión regular que valide si una dirección de correo electrónico es correcta según el formato estándar. El formato debe ser nombre@dominio.ext, donde:
+
+    nombre puede contener letras, números, puntos, guiones bajos y guiones.
+    dominio puede contener letras y números.
+    ext debe ser de 2 a 6 letras (por ejemplo, .com, .es, .info).
+
+'''
+    correo = input('Introduce correo')
+    expr = r'\w+@\w\.\w{2,6}'
+    if len(re.findall(expr,correo))>0:
+        print('bien')
 
 
 #### MENU ####
