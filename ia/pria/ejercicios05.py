@@ -79,10 +79,13 @@ Validación de direcciones de correo electrónico. Escribe una expresión regula
     ext debe ser de 2 a 6 letras (por ejemplo, .com, .es, .info).
 
 '''
-    correo = input('Introduce correo')
-    expr = r'\w+@\w\.\w{2,6}'
+    correo = input('Introduce correo: ')
+    expr = r'\w+@\w+\.\w{2,6}'
     if len(re.findall(expr,correo))>0:
         print('bien')
+    else:
+        print('correo no valido')
+    menu()
 
 
 #### MENU ####
