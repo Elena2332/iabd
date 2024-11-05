@@ -28,13 +28,20 @@ def ejercicio1():
 
 
 def ejercicio2():
-    
+    media = 3.2
+    desviacion = 0.5
+    prob_3_5kg = stats.norm.cdf(3.5, media, desviacion)-stats.norm.cdf(3.49, media, desviacion)
+    prob_pesar_80_mas = stats.norm.ppf(0.8, media, desviacion) 
+
+    print('1.probabilidad bebé recién nacido pese 3.5 kg: ',round(prob_3_5kg,3))
+    print('2.peso mínimo de un recién nacido para que el 80% de los bebés pesen menos: ',round(prob_pesar_80_mas,3))
+
     menu()
 
 
 #### MENU ####
 def menu():
-    #try:
+    try:
         print('''\nSelecciona Ejercicio
             1 = Ejercicio1
             2 = Ejercicio2
@@ -46,6 +53,6 @@ def menu():
             ejercicio2()
         else:
             print('Adios')
-    #except ValueError:
-     #   print('Adios')
+    except ValueError:
+        print('Adios')
 menu()
