@@ -44,8 +44,7 @@ def ejercicio11():
             valores['10-14'] += 1
         else:
             valores['15-19'] += 1
-    plt.bar(valores.keys(),valores.values(), 
-            color=["#ff7f7d", "#ffc07d", "#817dff", "#7dff86"])
+    sns.histplot(muestra, bins=[0,5,10,15,20]).set_xticks([0,5,10,15,20])
     plt.xlabel('Intervalos de Puntos')
     plt.ylabel('Cantidad')
     plt.title('Puntos obtenidos por 2 equipos de baloncesto')
@@ -55,7 +54,7 @@ def ejercicio11():
 
 #### MENU ####
 def menu():
-    try:
+    #try:
         print('''\nSelecciona Ejercicio
             1 = Ejercicio1
             2 = Ejercicio11
@@ -67,6 +66,6 @@ def menu():
             ejercicio11()
         else:
             print('Adios')
-    except ValueError:
-        print('Adios')
+    #except ValueError:
+    #    print('Adios')
 menu()
