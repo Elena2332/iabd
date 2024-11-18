@@ -7,9 +7,10 @@ from sklearn.impute import SimpleImputer
 # metodos pipeline
 def familia_name(function_transformer, feature_names_in):
      return ['familia']
-def familia_pipeline(X):
-     X['sibsp'].fillna(X['sibsp'].mode()[0], inplace=True) 
-     X['parch'].fillna(X['parch'].mode()[0], inplace=True) 
+def familia_fusion(X):
+     # X['sibsp'].fillna(X['sibsp'].mode()[0], inplace=True) 
+     # X['parch'].fillna(X['parch'].mode()[0], inplace=True) 
+     X=pd.DataFrame(X,columns=['parch','sibsp'])
      X['familia'] = X['sibsp'] + X['parch'] 
      #X=X.drop(['sibsp','parch'],axis=1)
      return X['familia'].values.reshape(-1,1)
@@ -17,9 +18,8 @@ def familia_pipeline(X):
 def age_name(function_transformer, feature_names_in):
      return ['age']
 def separar_age(X):
-     imp = SimpleImputer(strategy='mean')
-     X_age_imp = imp.fit_transform(X)
-     X = pd.cut(X_age_imp.flatten(), bins=[-1,16,32,48,64,np.inf], labels=[1,2,3,4,5]).to_numpy().reshape(-1,1)  #labels no admite str
+     X=pd.DataFrame(X,columns=['age'])
+     X['age'] = pd.cut(X['age'], bins=[-1,16,32,48,64,np.inf], labels=[1,2,3,4,5]).to_numpy().reshape(-1,1)  #labels no admite str
      #X=X.drop('age',axis=1)  #sobra
      return X
 
@@ -50,7 +50,7 @@ def cargar_csv():
 
 
 # cargar el modelo, devuelve None en caso de error
-def cargar_modelo(ruta):
+def cargar_modelo():
     ruta = input('Introduce ruta del modelo (archivo.pkl)')
     if os.path.isfile(ruta):
         try:
