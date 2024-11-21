@@ -1,5 +1,6 @@
 import pandas as pd
-import numpy as np
+import os
+import time
 
 
 # Carga la información del fichero en un dataframe de pandas
@@ -10,8 +11,11 @@ df = pd.read_csv(ruta_csv)
 print(df.head())
 
 # Guarda la información en un fichero parquet
-ruta_parquet = './bd/hadoop/ignore/df.parquet'
-parquet = df.to_parquet(ruta_parquet)
+ruta_parquet = './bd/hadoop/ignore/df.parquet.gzip'
+tiempoIni = time.time()
+df.to_parquet(ruta_parquet,compression='gzip')
+tiempoFin = time.time()-tiempoIni
+tamano = os.stat(ruta_parquet).st_size
 
 # Carga la información del fichero parquet en un dataframe de pandas
 df_parquet = pd.read_parquet(ruta_parquet)
@@ -20,5 +24,6 @@ df_parquet = pd.read_parquet(ruta_parquet)
 print(df_parquet.head())
 
 # Muestra el tamaño del archivo parquet y el tiempo que se ha tardado en crear el archivo
-
+print("Tiempo de creacion del archivo parquet:",tiempoFin)
+print("Tamaño del archivo parquet(Bytes):",tamano)
 
