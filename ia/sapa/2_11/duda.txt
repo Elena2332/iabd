@@ -1,0 +1,2 @@
+en el ejercicio 3 del 2_11, el de la diabetes, en la parte que hay que evaluar usando RMSE, 
+¿como se si es aceptable el resultado de RMSE? ¿Que tiene que ver con el maximo y el minimo?
