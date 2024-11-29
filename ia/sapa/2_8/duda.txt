@@ -1,0 +1,1 @@
+Me da un error en el fit de la optimizacion que no consigo arreglar y tampoco entiendo por que

@@ -6,45 +6,32 @@ import os
 
 # cargar el CSV
 def cargar_datos():
-    datos = {'int_rate':None,'installment':None,'fico':None,'revol_bal':None,'revol_util':None,'inq_last_6mths':None,'pub_rec':None,'purpose':None}
-    for nom,dato in datos.items():
-        if dato == None:
-            noBien = True
-            while noBien:
-                try:
-                    aux = None
-                    match nom:
-                        case 'int_rate':
-                            print('Introduce la tasa de interes (int_rate):  ')
-                            aux = float(input()) 
-                        case 'installment':
-                            print('Introduce cuotas (installment):  ')
-                            aux = float(input()) 
-                        case 'fico':
-                            print('Introduce fico:  ')
-                            aux = int(input()) 
-                        case 'revol_bal':
-                            print('Introduce saldo rotativo del prestatario (revol_bal):  ')
-                            aux = int(input()) 
-                        case 'revol_util':
-                            print('Introduce tasa de utilizacion de linea d credito (revol_util):  ')
-                            aux = float(input()) 
-                        case 'inq_last_6mths':
-                            print('Introduce numero de consultas de acreedores (inq_last_6mths):  ')
-                            aux = int(input())  
-                        case 'pub_rec':
-                            print('Introduce numero de registros publicos despectivos (pub_rec):  ')
-                            aux = int(input()) 
-                        case _:
-                            print('Introduce proposito del prestamo:  ')
-                            aux = input() 
-                    if aux != None:
-                        datos[nom] = aux
-                        noBien = False
-                except Exception as e:
-                    print(e)
-                    print('Error el valor introducido no es valido para {}. '.format(nom))
-            
+    datos = pd.DataFrame()
+    noBien = True
+    while noBien:
+        try:
+            print('Introduce si cumple los requisitos para el prestamo (0 no, 1 si) (credit_policy):  ')
+            datos['credit.policy'] = float(input()) 
+            print('Introduce la tasa de interes (int_rate):  ')
+            datos['int.rate'] = float(input()) 
+            print('Introduce cuotas (installment):  ')
+            datos['installment'] = float(input()) 
+            print('Introduce fico:  ')
+            datos['fico'] = int(input()) 
+            print('Introduce saldo rotativo del prestatario (revol_bal):  ')
+            datos['revol.bal'] = int(input()) 
+            print('Introduce tasa de utilizacion de linea d credito (revol_util):  ')
+            datos['revol.util'] = float(input()) 
+            print('Introduce numero de consultas de acreedores (inq_last_6mths):  ')
+            datos['inq.last.6mths'] = int(input())  
+            print('Introduce numero de registros publicos despectivos (pub_rec):  ')
+            datos['pub.rec'] = int(input()) 
+            print('Introduce proposito del prestamo:  ')
+            datos['purpose'] = input() 
+            noBien = False
+        except Exception as e:
+            print(e)
+            print('Error el valor introducido no es valido.')
     return datos
 
 
@@ -77,8 +64,7 @@ def predecir(modelo, df):
 
 #####  MAIN  #####
 # cargar datos
-datos = cargar_datos()
-df = pd.DataFrame(data = [datos.values()], columns=datos.keys())
+df = cargar_datos()
 
 # cargar el modelo
 modelo = cargar_modelo()
