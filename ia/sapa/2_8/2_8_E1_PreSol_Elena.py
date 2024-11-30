@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import joblib
-import os
 
 
 # cargar el CSV
@@ -38,15 +37,12 @@ def cargar_datos():
 # cargar el modelo, devuelve None en caso de error
 def cargar_modelo():
     ruta = './2_8_E1_Elena.pkl'
-    if os.path.isfile(ruta):
-        try:
-            modelo = joblib.load(ruta)
-            return modelo
-        except Exception as e:
-            print('Error al cargar el modelo: ',e)
-            return None
-    else:
-        print('Modelo inexiste, comprueba la ruta: ',ruta)
+    try:
+        modelo = joblib.load(ruta)
+        return modelo
+    except Exception as e:
+        print(e)
+        print('Error al cargar el modelo: ',e)
         return None
 
 
