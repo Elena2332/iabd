@@ -3,7 +3,19 @@ import pandas as pd
 import joblib
 
 
-# cargar el CSV
+# cargar el modelo, devuelve None en caso de error
+def cargar_modelo():
+    ruta = './2_8_E1_Elena.pkl'
+    try:
+        modelo = joblib.load(ruta)
+        return modelo
+    except Exception as e:
+        print(e)
+        print('Error al cargar el modelo: ',e)
+        return None
+
+
+# cargar datos
 def cargar_datos():
     datos = pd.DataFrame()
     noBien = True
@@ -28,22 +40,11 @@ def cargar_datos():
             print('Introduce proposito del prestamo:  ')
             datos['purpose'] = input() 
             noBien = False
+            print(datos)
         except Exception as e:
             print(e)
             print('Error el valor introducido no es valido.')
     return datos
-
-
-# cargar el modelo, devuelve None en caso de error
-def cargar_modelo():
-    ruta = './2_8_E1_Elena.pkl'
-    try:
-        modelo = joblib.load(ruta)
-        return modelo
-    except Exception as e:
-        print(e)
-        print('Error al cargar el modelo: ',e)
-        return None
 
 
 # hacer la predicción, devuelve None en caso de error
@@ -51,7 +52,8 @@ def predecir(modelo, df):
     try:
         prediciones = modelo.predict(df)
         return prediciones
-    except Exception :
+    except Exception as e:
+        print(e)
         return None
 
 
@@ -59,11 +61,11 @@ def predecir(modelo, df):
 
 
 #####  MAIN  #####
-# cargar datos
-df = cargar_datos()
-
 # cargar el modelo
 modelo = cargar_modelo()
+
+# cargar datos
+df = cargar_datos()
 
 # predecir si el modelo no es None
 if modelo is not None:
