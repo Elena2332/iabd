@@ -23,60 +23,53 @@
     "track_width": float,                  # width of the track
     "waypoints": [(float, float), ]        # list of (x,y) as milestones along the track center
 }'''
-#########  recompensa-33  ###########
+#########  recompensa-sac modelo4  ###########
 def reward_function(params):
-   reward = 0
-   # Read input parameters
-   track_width = params['track_width']
-   distance_from_center = params['distance_from_center']
-   abs_steering = abs(params['steering_angle']) # Only need the absolute steering angle
-   # Calculate 3 markers that are at varying distances away from the center line
-   marker_1 = 0.1 * track_width
-   marker_2 = 0.25 * track_width
-   marker_3 = 0.5 * track_width
- 
-   # Give higher reward if the car is closer to center line and vice versa
-   if distance_from_center <= marker_1:
-       reward = 1.1
-   elif distance_from_center <= marker_2:
-       reward = 0.4
-   elif distance_from_center <= marker_3:
-       reward = 0.1
-   else:
-       reward = 1e-5  # likely crashed/ close to off track
+    # Leer parámetros de entrada
+    track_width = params['track_width']
+    distance_from_center = params['distance_from_center']
+    steering_angle = abs(params['steering_angle'])
+    speed = params['speed']
+    all_wheels_on_track = params['all_wheels_on_track']
 
+    # Inicializar la recompensa
+    reward = 1e-3  # Evitar cero para no interrumpir el entrenamiento
 
-   #Zig-zag
-   # Steering penality threshold, change the number based on your action space setting
-   ABS_STEERING_THRESHOLD = 15
- 
-   # Penalize reward if the car is steering too much
-   if abs_steering > ABS_STEERING_THRESHOLD:
-       reward *= 0.7
+    ### Evitar zigzag ###
+    # Penalización para grandes ángulos de giro
+    ABS_STEERING_THRESHOLD = 15  # Ángulo límite para penalizar
+    if steering_angle > ABS_STEERING_THRESHOLD:
+        reward *= 0.7  # Penaliza si el ángulo de giro es demasiado alto
 
+    ### Premiar ir centrado ###
+    # Definir marcadores basados en la anchura de la pista
+    marker_1 = 0.1 * track_width  # Cercano al centro
+    marker_2 = 0.25 * track_width  # Moderadamente cerca
+    marker_3 = 0.5 * track_width  # Lejos del centro
+    
+    # Recompensa basada en la distancia desde el centro
+    if distance_from_center <= marker_1:
+        reward += 1.5  # Máxima recompensa por estar cerca del centro
+    elif distance_from_center <= marker_2:
+        reward += 0.8  # Recompensa moderada
+    elif distance_from_center <= marker_3:
+        reward += 0.3  # Recompensa baja
+    else:
+        reward = 1e-3  # Penalización fuerte por estar fuera de pista
 
-   #salida de pista
-   # recompensa por mantenerse dentro del recorrido
-   if params['all_wheels_on_track']:
-       reward += 0.3
+    ### Penalizar velocidades bajas ###
+    # Recompensa basada en la velocidad
+    MIN_SPEED = 1.5  # Velocidad mínima deseada
+    TARGET_SPEED = 2.5  # Velocidad ideal
+    if speed < MIN_SPEED:
+        reward *= 0.5  # Penaliza velocidades demasiado lentas
+    elif speed >= MIN_SPEED and speed <= TARGET_SPEED:
+        reward += (speed - MIN_SPEED) * 0.5  # Recompensa por velocidades dentro del rango deseado
+    elif speed > TARGET_SPEED:
+        reward += 0.3  # Incentiva velocidades superiores, pero no demasiado
 
+    ### Bonificación por mantener todas las ruedas en la pista ###
+    if all_wheels_on_track:
+        reward += 0.5  # Recompensa adicional por mantener estabilidad
 
-   # si se ha salido penalizamos
-   if params['is_offtrack']:
-       reward += -2
-
-
-   # recompensamos segun progreso del circuito
-   progress = round(params['progress'],2)
-   if progress == 0.25:
-       reward += 1
-   elif progress == 0.5:
-       reward += 2
-   elif progress == 0.75:
-       reward += 3
-   elif progress == 0.95:
-       reward += 4
-   else:
-       reward += 0
- 
-   return float(reward)
+    return float(reward)

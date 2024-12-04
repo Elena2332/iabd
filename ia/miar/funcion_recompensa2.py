@@ -4,44 +4,42 @@ def reward_function(params):
     # Read input parameters
     track_width = params['track_width']
     distance_from_center = params['distance_from_center']
-    abs_steering = abs(params['steering_angle']) # Only need the absolute steering angle
+    abs_steering = abs(params['steering_angle'])  # Absolute steering angle
     speed = params['speed']
+    
     ### Centrado
-    # Calculate 3 markers that are at varying distances away from the center line
+    # Calculate markers at varying distances from the center line
     marker_1 = 0.1 * track_width
     marker_2 = 0.25 * track_width
     marker_3 = 0.5 * track_width
-   
-    # Give higher reward if the car is closer to center line and vice versa
+    
+    # Reward based on distance from center
     if distance_from_center <= marker_1:
-        reward = 1.0
+        reward = 1.5  
     elif distance_from_center <= marker_2:
-        reward = 0.5
+        reward = 0.8
     elif distance_from_center <= marker_3:
-        reward = 0.1
+        reward = 0.2
     else:
-        reward = 1e-3  # likely crashed/ close to off track
-
-    ###Zig-zag
-    # Steering penality threshold, change the number based on your action space setting
-    ABS_STEERING_THRESHOLD = 15
-   
-    # Penalize reward if the car is steering too much
+        reward = 1e-3  # Likely off track
+    
+    ### Zigzag (steering stability)
+    ABS_STEERING_THRESHOLD = 15  # Threshold for penalizing steering
     if abs_steering > ABS_STEERING_THRESHOLD:
-        reward *= 0.6
-    ### Velocidad 
-    else: 
-        if speed < 1.8:   # penaliza si lento en las rectas
-            reward -= (speed - 1.8) * 0.2 
-    if speed > 1.5:  # premia si va mas rapido
-        reward += (speed - 1.5) * 0.3  # Increase reward based on speed
-
-    ### Salida de pista
-    # recompensa por mantenerse dentro del recorrido
+        reward *= 0.5  # Penaliza por girar muy cerrado
+    
+    ### Velocidad
+    # Encourage higher speeds
+    if speed >= 2.0:
+        reward += (speed - 2.0) * 1.0  # Incentivo para que corra
+    elif speed < 1.4:
+        reward -= (1.4 - speed) * 0.5  # Penalizacion por lento
+    
+    ### Pista (track adherence)
+    # Premia por estar dentro
     if params['all_wheels_on_track']:
-        reward += 0.2
-    # si se ha salido penalizamos
+        reward += 0.4
     if params['is_offtrack']:
-        reward += -2
-
+        reward -= 3.0  # Penaliza por salir
+    
     return float(reward)
