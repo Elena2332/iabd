@@ -23,7 +23,7 @@
     "track_width": float,                  # width of the track
     "waypoints": [(float, float), ]        # list of (x,y) as milestones along the track center
 }'''
-#########  recompensa-sac modelo41  ###########
+#########  recompensa-sac modelo42  ###########
 def reward_function(params):
     # Leer parámetros de entrada
     track_width = params['track_width']
@@ -60,13 +60,13 @@ def reward_function(params):
     ### Penalizar velocidades bajas ###
     # Recompensa basada en la velocidad
     MIN_SPEED = 1.2  # Velocidad mínima deseada
-    TARGET_SPEED = 2.3  # Velocidad ideal
+    TARGET_SPEED = 2.1  # Velocidad ideal
     if speed < MIN_SPEED:
         reward *= 0.5  # Penaliza velocidades demasiado lentas
     elif speed >= MIN_SPEED and speed <= TARGET_SPEED:
         reward += (speed - MIN_SPEED) * 0.5  # Recompensa por velocidades dentro del rango deseado
     elif speed > TARGET_SPEED:
-        reward += 0.3  # Incentiva velocidades superiores, pero no demasiado
+        reward += 0.15  # Incentiva velocidades superiores, pero no demasiado
 
     ### Bonificación por mantener todas las ruedas en la pista ###
     if all_wheels_on_track:

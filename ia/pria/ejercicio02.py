@@ -60,12 +60,14 @@ def ejercicio2():
             print('Ambas cadenas deben tener la misma longitud')
         else:
             noBien = False
+    # cadenaFinal = ''.join(a+b for a,b in zip(cadena1,cadena2))   # optimizacion, une las cadenas alternando las letras
     mezclaCadenas = []
     for i in range(len(cadena1)):
         mezclaCadenas.append(cadena1[i])
         mezclaCadenas.append(cadena2[i])
     cadenaFinal = listaAcadena(mezclaCadenas)
     print(cadenaFinal)
+    menu()
 
 
 
