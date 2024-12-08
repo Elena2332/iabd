@@ -23,7 +23,7 @@
     "track_width": float,                  # width of the track
     "waypoints": [(float, float), ]        # list of (x,y) as milestones along the track center
 }'''
-#########  recompensa-sac modelo4  ###########
+#########  recompensa-sac modelo41  ###########
 def reward_function(params):
     # Leer parámetros de entrada
     track_width = params['track_width']
@@ -39,7 +39,7 @@ def reward_function(params):
     # Penalización para grandes ángulos de giro
     ABS_STEERING_THRESHOLD = 15  # Ángulo límite para penalizar
     if steering_angle > ABS_STEERING_THRESHOLD:
-        reward *= 0.7  # Penaliza si el ángulo de giro es demasiado alto
+        reward *= 0.65  # Penaliza si el ángulo de giro es demasiado alto
 
     ### Premiar ir centrado ###
     # Definir marcadores basados en la anchura de la pista
@@ -59,8 +59,8 @@ def reward_function(params):
 
     ### Penalizar velocidades bajas ###
     # Recompensa basada en la velocidad
-    MIN_SPEED = 1.5  # Velocidad mínima deseada
-    TARGET_SPEED = 2.5  # Velocidad ideal
+    MIN_SPEED = 1.2  # Velocidad mínima deseada
+    TARGET_SPEED = 2.3  # Velocidad ideal
     if speed < MIN_SPEED:
         reward *= 0.5  # Penaliza velocidades demasiado lentas
     elif speed >= MIN_SPEED and speed <= TARGET_SPEED:
@@ -71,5 +71,9 @@ def reward_function(params):
     ### Bonificación por mantener todas las ruedas en la pista ###
     if all_wheels_on_track:
         reward += 0.5  # Recompensa adicional por mantener estabilidad
+
+    # si se ha salido penalizamos
+    if params['is_offtrack']:
+        reward += -2
 
     return float(reward)
