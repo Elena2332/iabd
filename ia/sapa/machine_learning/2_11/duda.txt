@@ -1,0 +1,6 @@
+en el ejercicio 3 del 2_11, el de la diabetes, en la parte que hay que evaluar usando RMSE, 
+¿como se si es aceptable el resultado de RMSE? ¿Que tiene que ver con el maximo y el minimo?
+
+GRACIAS POR CORREGIR TAN RAPIDO!!!
+en el ejercicio 5 del 2_11, el del CO2, me daba el mismo error en la optimizacion que el 2_8 que me esta volviendo loca
+GRACIAS <3

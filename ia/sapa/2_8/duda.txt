@@ -1,2 +1,0 @@
-Me da un error en el fit de la optimizacion que no consigo arreglar y tampoco entiendo por que
-He intentado corregir el .py pero no lo he probado porque por el error no he podido generar el .pkl
